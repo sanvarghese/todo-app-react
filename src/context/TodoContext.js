@@ -8,10 +8,11 @@ export const TodoProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [filter, setFilter] = useState('all'); // 'all', 'completed', 'active'
+    const [refresh, setRefresh] = useState(false); // New refresh flag
 
     useEffect(() => {
         fetchTodos();
-    }, []);
+    }, [refresh]);
 
     const fetchTodos = async () => {
         setLoading(true);
@@ -46,6 +47,8 @@ export const TodoProvider = ({ children }) => {
         setLoading(true);
         try {
             const data = await updateTodo(id, updatedTodo);
+            setRefresh(prev => !prev); // Toggle refresh flag
+
             setTodos(todos.map(todo => todo.id === id ? data : todo));
             setError(null);
             return true;
@@ -62,6 +65,7 @@ export const TodoProvider = ({ children }) => {
         setLoading(true);
         try {
             await deleteTodo(id);
+            setRefresh(prev => !prev); // Toggle refresh flag
             setTodos(todos.filter(todo => todo.id !== id));
             setError(null);
         } catch (err) {
