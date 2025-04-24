@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <div className="home-page">
             <h1>My Todo List</h1>
-            <FilterTodos />
+            {/* <FilterTodos /> */}
             <TodoList />
             <Link to="/add" className="add-todo-link">
                 Add New Todo

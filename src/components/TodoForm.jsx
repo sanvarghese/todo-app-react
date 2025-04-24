@@ -4,7 +4,7 @@ const TodoForm = ({ initialTodo = {}, onSubmit, buttonText = 'Add Todo' }) => {
     const [todo, setTodo] = useState({
         title: initialTodo.title || '',
         description: initialTodo.description || '',
-        completed: initialTodo.completed || false
+        completed: initialTodo.status === 'complete' ? true : false
     });
     const [errors, setErrors] = useState({});
 

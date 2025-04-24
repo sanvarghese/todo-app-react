@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const TodoItem = ({ todo, onDelete, onToggle }) => {
     return (
-        <li className={`todo-item ${todo.status === 'completed' ? 'completed' : ''}`}>
+        <li className={`todo-item ${todo.status === 'complete' ? 'completed' : ''}`}>
             <input
                 type="checkbox"
-                checked={todo.status === 'completed'}
+                checked={todo.status === 'complete'}
                 onChange={() => onToggle(todo._id)}
             />
             <span className="todo-title">{todo.title}</span>
